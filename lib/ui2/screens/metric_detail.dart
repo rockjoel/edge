@@ -1658,6 +1658,7 @@ class _MetricDetailState extends State<MetricDetail> {
       case 'de':
         return '$n.';
       case 'es':
+      case 'it':
         return '$nº';
       case 'hi':
       case 'zh':

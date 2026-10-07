@@ -147,6 +147,7 @@ const Map<String, String> _kLanguageNames = {
   'de': 'Deutsch',
   'zh': '中文',
   'hi': 'हिन्दी',
+  'it': 'Italiano',
 };
 
 String _languageLabel(BuildContext c, String? code) => code == null
