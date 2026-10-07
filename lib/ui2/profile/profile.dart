@@ -163,21 +163,25 @@ Future<void> _pickLanguage(BuildContext c) async {
     backgroundColor: p.card,
     showDragHandle: true,
     builder: (sheet) => SafeArea(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          for (final code in options)
-            ListTile(
-              title: Text(_languageLabel(sheet, code), style: F.body.copyWith(color: p.ink)),
-              trailing: ctrl.code == code
-                  ? Icon(LucideIcons.check, size: 18, color: p.on(C.blue))
-                  : null,
-              onTap: () async {
-                await ctrl.setCode(code);
-                if (sheet.mounted) Navigator.of(sheet).pop();
-              },
-            ),
-        ],
+      // Scrolls: the list outgrows the sheet's default height once enough
+      // languages land.
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            for (final code in options)
+              ListTile(
+                title: Text(_languageLabel(sheet, code), style: F.body.copyWith(color: p.ink)),
+                trailing: ctrl.code == code
+                    ? Icon(LucideIcons.check, size: 18, color: p.on(C.blue))
+                    : null,
+                onTap: () async {
+                  await ctrl.setCode(code);
+                  if (sheet.mounted) Navigator.of(sheet).pop();
+                },
+              ),
+          ],
+        ),
       ),
     ),
   );
